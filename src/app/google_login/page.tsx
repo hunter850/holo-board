@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { API_URLS } from "@/config/api_config";
@@ -35,11 +35,13 @@ export default function GoogleLogin() {
     }, [searchParams, router]);
 
     return (
-        <div className="flex min-h-screen items-center justify-center">
-            <div className="text-center">
-                <Loader2 className="mx-auto mb-4 h-8 w-8 animate-spin" />
-                <p className="text-lg">登入中...</p>
+        <Suspense>
+            <div className="flex min-h-screen items-center justify-center">
+                <div className="text-center">
+                    <Loader2 className="mx-auto mb-4 h-8 w-8 animate-spin" />
+                    <p className="text-lg">登入中...</p>
+                </div>
             </div>
-        </div>
+        </Suspense>
     );
 }
