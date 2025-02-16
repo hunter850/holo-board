@@ -11,9 +11,9 @@ interface VTuberCardProps {
     status: string;
 }
 
-export default function VTuberCard({ name, en_name, live_avatar, youtube_link, status }: VTuberCardProps) {
+export default function VTuberCard({ id, name, en_name, live_avatar, status }: VTuberCardProps) {
     return (
-        <Link href={youtube_link} target="_blank" className="h-full">
+        <Link href={`/talent/${id}`} className="h-full">
             <Card className="flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lg">
                 <div className="relative aspect-square">
                     <Image
