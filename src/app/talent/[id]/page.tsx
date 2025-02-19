@@ -3,9 +3,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import VideoList from "@/components/organisms/VideoList";
 import { API_URLS } from "@/config/api_config";
 
-interface TalentInfo {
+export interface TalentInfo {
     id: number;
     name: string;
     en_name: string | null;
@@ -18,19 +19,65 @@ interface TalentInfo {
     updated_at: string;
 }
 
-async function getTalentInfo(id: string): Promise<TalentInfo> {
+export interface TalentInfoResult {
+    success: boolean;
+    message?: string;
+    data: TalentInfo;
+}
+
+export interface Video {
+    videoId: string;
+    thumbnails: {
+        url: string;
+        width: number;
+        height: number;
+    }[];
+    title: string;
+    viewCount: number;
+    liveBroadcastContent: string;
+    membershipOnly: boolean;
+}
+
+export interface VideoResult {
+    success: boolean;
+    message?: string;
+    data: Video[];
+}
+
+async function getData(id: string) {
     const params = new URLSearchParams();
     params.append("id", id);
-    const response = await fetch(`${API_URLS.TALENT_LIST}?${params.toString()}`, {
-        next: { revalidate: 60 },
-    });
 
-    if (!response.ok) {
+    try {
+        const [talentResponse, videoResponse] = await Promise.all([
+            fetch(`${API_URLS.TALENT_LIST}?${params.toString()}`, {
+                next: { revalidate: 60 },
+            }),
+            fetch(`${API_URLS.VIDEO_LIST}?${params.toString()}`, {
+                next: { revalidate: 60 },
+            }),
+        ]);
+
+        if (!talentResponse.ok || !videoResponse.ok) {
+            notFound();
+        }
+
+        const [talentData, videoData] = await Promise.all([
+            talentResponse.json() as Promise<TalentInfoResult>,
+            videoResponse.json() as Promise<VideoResult>,
+        ]);
+
+        if (!talentData.success || !videoData.success) {
+            notFound();
+        }
+
+        return {
+            talent: talentData.data,
+            videos: videoData.data,
+        };
+    } catch {
         notFound();
     }
-
-    const data = (await response.json()) as { success: boolean; message?: string; data: TalentInfo };
-    return data.data;
 }
 
 export interface TalentPageProps {
@@ -39,36 +86,41 @@ export interface TalentPageProps {
 
 export default async function TalentPage({ params }: TalentPageProps) {
     const { id } = await params;
-    const talent = await getTalentInfo(id);
+    const { talent, videos } = await getData(id);
 
     if (talent.deleted) {
         notFound();
     }
 
     return (
-        <Card className="p-6">
-            <div className="flex flex-col gap-6 md:flex-row">
-                <div className="w-full md:w-1/3">
-                    <div className="relative aspect-square overflow-hidden rounded-lg">
-                        <Image
-                            src={talent.live_avatar ?? talent.avatar ?? ""}
-                            alt={talent.name}
-                            fill
-                            className="object-cover object-top"
-                        />
+        <>
+            <Card className="p-6">
+                <div className="flex flex-col gap-6 md:flex-row">
+                    <div className="w-full md:w-1/3">
+                        <div className="relative aspect-square overflow-hidden rounded-lg">
+                            <Image
+                                src={talent.live_avatar ?? talent.avatar ?? ""}
+                                alt={talent.name}
+                                fill
+                                className="object-cover object-top"
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                                priority={true}
+                            />
+                        </div>
+                    </div>
+                    <div className="flex-1">
+                        <h1 className="mb-2 text-2xl font-bold">{talent.name}</h1>
+                        {talent.en_name && <p className="mb-4 text-lg text-muted-foreground">{talent.en_name}</p>}
+                        {talent.status && <p className="mb-4 text-sm text-muted-foreground">狀態：{talent.status}</p>}
+                        {talent.youtube_link && (
+                            <Link href={talent.youtube_link} target="_blank">
+                                <Button>前往 YouTube 頻道</Button>
+                            </Link>
+                        )}
                     </div>
                 </div>
-                <div className="flex-1">
-                    <h1 className="mb-2 text-2xl font-bold">{talent.name}</h1>
-                    {talent.en_name && <p className="text-muted-foreground mb-4 text-lg">{talent.en_name}</p>}
-                    {talent.status && <p className="text-muted-foreground mb-4 text-sm">狀態：{talent.status}</p>}
-                    {talent.youtube_link && (
-                        <Link href={talent.youtube_link} target="_blank">
-                            <Button>前往 YouTube 頻道</Button>
-                        </Link>
-                    )}
-                </div>
-            </div>
-        </Card>
+            </Card>
+            <VideoList videos={videos} />
+        </>
     );
 }

@@ -12,6 +12,8 @@ export const API_CONFIG = {
         GOOGLE_LOGIN: "/api/google_login",
         USER: "/api/user_info",
         LOGOUT: "/api/logout",
+        TEST: "/api/test",
+        VIDEO_LIST: "/api/video_list",
     },
     FRONTEND_ENDPOINTS: {
         USER: "/api/user",
@@ -24,6 +26,8 @@ export const API_URLS = {
     GOOGLE_LOGIN: `${BASE_DOMAIN}${API_CONFIG.ENDPOINTS.GOOGLE_LOGIN}`,
     USER: `${BASE_DOMAIN}${API_CONFIG.ENDPOINTS.USER}`,
     LOGOUT: `${BASE_DOMAIN}${API_CONFIG.ENDPOINTS.LOGOUT}`,
+    TEST: `${BASE_DOMAIN}${API_CONFIG.ENDPOINTS.TEST}`,
+    VIDEO_LIST: `${BASE_DOMAIN}${API_CONFIG.ENDPOINTS.VIDEO_LIST}`,
 } as const;
 
 export const FRONTEND_URLS = {} as const;
