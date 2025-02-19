@@ -1,9 +1,10 @@
 "use client";
+
 import { Card } from "@/components/ui/card";
-import VideoThumbnail from "@/components/atoms/VideoThumbnail";
 import VideoModal from "./VideoModal";
 import { Lock } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 interface VideoCardProps {
     videoId: string;
@@ -34,12 +35,20 @@ export default function VideoCard({
 
     return (
         <>
-            <button onClick={() => setShowModal(true)} className="block h-full w-full text-left">
-                <Card className="flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lg">
-                    <VideoThumbnail thumbnails={thumbnails} title={title} />
-                    <div className="flex flex-1 flex-col p-3">
-                        <h3 className="line-clamp-2 font-medium">{title}</h3>
-                        <div className="mt-auto flex items-center gap-2 pt-2">
+            <button onClick={() => setShowModal(true)} className="group block h-full w-full text-left">
+                <Card className="h-full overflow-hidden transition-shadow hover:shadow-lg">
+                    <div className="relative aspect-video w-full overflow-hidden">
+                        <Image
+                            src={thumbnails[thumbnails.length - 1].url}
+                            alt={title}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                    </div>
+                    <div className="p-3">
+                        <h3 className="line-clamp-2 font-medium group-hover:text-primary">{title}</h3>
+                        <div className="mt-2 flex items-center gap-2">
                             {membershipOnly ? (
                                 <span className="flex items-center gap-1 text-sm text-muted-foreground">
                                     <Lock className="h-3 w-3" />
