@@ -144,7 +144,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
                     </div>
                 </div>
             </Card>
-            <VideoList videos={videos} />
+            <VideoList videos={videos} mainVideoId={mainVideo?.videoId} />
         </>
     );
 }
