@@ -26,10 +26,7 @@ export default function MainVideoSection({ video }: MainVideoSectionProps) {
                             sizes="(max-width: 1024px) 100vw, 600px"
                         />
                         <div className="absolute bottom-2 right-2">
-                            <VideoStatus
-                                liveBroadcastContent={video.liveBroadcastContent}
-                                viewCount={video.viewCount}
-                            />
+                            <VideoStatus {...video} />
                         </div>
                     </div>
                     <h2 className="mb-2 mt-3 line-clamp-2 text-lg font-medium group-hover:text-primary">
