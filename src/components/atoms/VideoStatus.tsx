@@ -1,5 +1,5 @@
 import { Lock } from "lucide-react";
-import type { Video } from "@/app/talent/[id]/page";
+import type { Video } from "@/types";
 
 export default function VideoStatus({ liveBroadcastContent, viewCount, membershipOnly }: Video) {
     const isLive = liveBroadcastContent === "live";

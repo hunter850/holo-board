@@ -1,6 +1,6 @@
 import VideoCard from "@/components/molecules/VideoCard";
 // types
-import type { Video } from "@/app/talent/[id]/page";
+import type { Video } from "@/types";
 
 interface VideoListProps {
     videos: Video[];

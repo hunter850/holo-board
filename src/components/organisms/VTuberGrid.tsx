@@ -1,24 +1,7 @@
 import VTuberCard from "@/components/molecules/VTuberCard";
 import { API_URLS } from "@/config/api_config";
-
-interface HoloTalent {
-    id: number;
-    name: string;
-    en_name: string;
-    live_avatar: string;
-    avatar: string;
-    status: string;
-    youtube_link: string;
-    deleted: boolean;
-    created_at: string;
-    updated_at: string;
-}
-
-interface HoloResponse {
-    success: boolean;
-    message: string;
-    data: HoloTalent[];
-}
+// types
+import type { HoloTalent, HoloResponse } from "@/types";
 
 function sortById(a: HoloTalent, b: HoloTalent) {
     return a.id - b.id;

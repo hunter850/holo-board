@@ -6,44 +6,7 @@ import Link from "next/link";
 import VideoList from "@/components/organisms/VideoList";
 import { API_URLS } from "@/config/api_config";
 import MainVideoSection from "@/components/molecules/MainVideoSection";
-
-export interface TalentInfo {
-    id: number;
-    name: string;
-    en_name: string | null;
-    live_avatar: string | null;
-    avatar: string | null;
-    status: string | null;
-    youtube_link: string | null;
-    deleted: boolean;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface TalentInfoResult {
-    success: boolean;
-    message?: string;
-    data: TalentInfo;
-}
-
-export interface Video {
-    videoId: string;
-    thumbnails: {
-        url: string;
-        width: number;
-        height: number;
-    }[];
-    title: string;
-    viewCount: number;
-    liveBroadcastContent: string;
-    membershipOnly: boolean;
-}
-
-export interface VideoResult {
-    success: boolean;
-    message?: string;
-    data: Video[];
-}
+import type { TalentInfoResult, Video, VideoResult } from "@/types";
 
 async function getData(id: string) {
     const params = new URLSearchParams();

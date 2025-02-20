@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import VideoStatus from "@/components/atoms/VideoStatus";
 import VideoModal from "@/components/molecules/VideoModal";
-import type { Video } from "@/app/talent/[id]/page";
+import type { Video } from "@/types";
 
 interface MainVideoSectionProps {
     video: Video;

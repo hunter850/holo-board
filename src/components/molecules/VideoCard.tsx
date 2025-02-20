@@ -6,7 +6,7 @@ import VideoModal from "./VideoModal";
 import { useState } from "react";
 import Image from "next/image";
 // types
-import type { Video } from "@/app/talent/[id]/page";
+import type { Video } from "@/types";
 
 export default function VideoCard(props: Video) {
     const { videoId, thumbnails, title } = props;
