@@ -70,7 +70,7 @@ export default async function TalentPage({ params }: TalentPageProps) {
 
     return (
         <>
-            <Card className="p-6">
+            <Card className="bg-white/70 p-6 shadow-lg shadow-purple-200 backdrop-blur-sm">
                 <div className="flex flex-col items-center justify-center gap-6 lg:flex-row">
                     <div className="w-full lg:w-1/3">
                         <div className="relative aspect-square overflow-hidden rounded-lg">
@@ -86,19 +86,19 @@ export default async function TalentPage({ params }: TalentPageProps) {
                     </div>
                     <div className="flex w-full flex-col lg:w-auto">
                         <div>
-                            <h1 className="mb-2 text-center text-2xl font-bold lg:text-left">{talent.name}</h1>
+                            <h1 className="mb-2 text-center text-2xl font-bold text-purple-900 lg:text-left">
+                                {talent.name}
+                            </h1>
                             {talent.en_name && (
-                                <p className="mb-4 text-center text-lg text-muted-foreground lg:text-left">
+                                <p className="mb-4 text-center text-lg text-purple-600/80 lg:text-left">
                                     {talent.en_name}
                                 </p>
                             )}
-                            {talent.status && (
-                                <p className="mb-4 text-sm text-muted-foreground">狀態：{talent.status}</p>
-                            )}
+                            {talent.status && <p className="mb-4 text-sm text-pink-600">狀態：{talent.status}</p>}
                             <div className="flex justify-center gap-3 lg:justify-start">
                                 {talent.youtube_link && (
                                     <Link href={talent.youtube_link} target="_blank">
-                                        <Button>前往 YouTube 頻道</Button>
+                                        <Button className="bg-purple-600 hover:bg-purple-700">前往 YouTube 頻道</Button>
                                     </Link>
                                 )}
                             </div>

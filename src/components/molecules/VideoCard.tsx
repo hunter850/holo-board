@@ -15,7 +15,7 @@ export default function VideoCard(props: Video) {
     return (
         <>
             <button onClick={() => setShowModal(true)} className="group block h-full w-full text-left">
-                <Card className="h-full overflow-hidden transition-shadow hover:shadow-lg">
+                <Card className="h-full overflow-hidden bg-white/70 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-purple-200">
                     <div className="relative aspect-video w-full overflow-hidden">
                         <Image
                             src={thumbnails[thumbnails.length - 1].url}
@@ -29,7 +29,7 @@ export default function VideoCard(props: Video) {
                         </div>
                     </div>
                     <div className="p-3">
-                        <h3 className="line-clamp-2 font-medium group-hover:text-primary">{title}</h3>
+                        <h3 className="line-clamp-2 font-medium text-purple-900 group-hover:text-pink-600">{title}</h3>
                     </div>
                 </Card>
             </button>

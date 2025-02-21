@@ -1,6 +1,7 @@
 "use client";
 import { X } from "lucide-react";
 import { useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface VideoModalProps {
     videoId: string;
@@ -28,7 +29,7 @@ export default function VideoModal({ videoId, onClose }: VideoModalProps) {
         return () => document.removeEventListener("keydown", handleEscape);
     }, [onClose]);
 
-    return (
+    const modalContent = (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={handleBackdropClick}>
             <div className="relative w-full max-w-4xl px-4">
                 <button onClick={onClose} className="absolute -top-10 right-4 text-white hover:text-gray-300">
@@ -47,4 +48,7 @@ export default function VideoModal({ videoId, onClose }: VideoModalProps) {
             </div>
         </div>
     );
+
+    // 使用 createPortal 將 modal 內容渲染到 body 的最後面
+    return createPortal(modalContent, document.body);
 }

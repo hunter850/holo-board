@@ -14,7 +14,7 @@ interface VTuberCardProps {
 export default function VTuberCard({ id, name, en_name, live_avatar, status }: VTuberCardProps) {
     return (
         <Link href={`/talent/${id}`} className="h-full">
-            <Card className="flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lg">
+            <Card className="flex h-full flex-col overflow-hidden bg-white/70 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-200">
                 <div className="relative aspect-square">
                     <Image
                         src={live_avatar}
@@ -30,11 +30,11 @@ export default function VTuberCard({ id, name, en_name, live_avatar, status }: V
           */}
                 </div>
                 <div className="flex flex-1 flex-col p-3">
-                    <h3 className="line-clamp-2 font-medium">
+                    <h3 className="line-clamp-2 font-medium text-purple-900">
                         {name}
-                        {status && <span className="text-muted-foreground ml-1">【{status}】</span>}
+                        {status && <span className="ml-1 text-pink-600">【{status}】</span>}
                     </h3>
-                    <p className="text-muted-foreground mt-1 line-clamp-1 text-sm">{en_name}</p>
+                    <p className="mt-1 line-clamp-1 text-sm text-purple-600/80">{en_name}</p>
                 </div>
             </Card>
         </Link>

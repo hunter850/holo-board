@@ -13,12 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Holo Board",
+    title: "Holo Dashboard",
     description: "A dashboard for Hololive talents",
     icons: { icon: { url: "/images/hd_favicon_64.png" } },
     authors: [{ name: "HLKW" }],
     openGraph: {
-        title: "Holo Board",
+        title: "Holo Dashboard",
         description: "A dashboard for Hololive talents",
         locale: "zh_TW",
         type: "website",
