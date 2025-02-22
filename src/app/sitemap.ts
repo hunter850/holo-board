@@ -15,7 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // 基本的 sitemap 條目（保證至少有首頁）
         const baseEntries: MetadataRoute.Sitemap = [
             {
-                url: process.env.NEXT_PUBLIC_SITE_URL!,
+                url: process.env.NEXT_PUBLIC_SITE_DOMAIN!,
                 lastModified: new Date(),
                 changeFrequency: "daily",
                 priority: 1,
@@ -41,7 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         // 生成完整的 sitemap
         const talentUrls: MetadataRoute.Sitemap = sortedTalents.map((talent) => ({
-            url: `${process.env.NEXT_PUBLIC_SITE_URL}/talent/${talent.id}`,
+            url: `${process.env.NEXT_PUBLIC_SITE_DOMAIN!}/talent/${talent.id}`,
             lastModified: new Date(),
             changeFrequency: "daily",
             priority: 0.7,
@@ -52,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         console.error("Error generating sitemap:", error);
         return [
             {
-                url: process.env.NEXT_PUBLIC_SITE_URL!,
+                url: process.env.NEXT_PUBLIC_SITE_DOMAIN!,
                 lastModified: new Date(),
                 changeFrequency: "daily",
                 priority: 1,
