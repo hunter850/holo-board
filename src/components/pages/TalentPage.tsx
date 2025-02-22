@@ -94,7 +94,11 @@ export default async function TalentPage({ params }: TalentPageProps) {
                                     {talent.en_name}
                                 </p>
                             )}
-                            {talent.status && <p className="mb-4 text-sm text-pink-600">狀態：{talent.status}</p>}
+                            {talent.status && (
+                                <p className="mb-4 text-center text-sm text-pink-600 lg:text-left">
+                                    狀態：{talent.status}
+                                </p>
+                            )}
                             <div className="flex justify-center gap-3 lg:justify-start">
                                 {talent.youtube_link && (
                                     <Link href={talent.youtube_link} target="_blank">
