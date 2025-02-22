@@ -3,7 +3,6 @@ import { API_URLS } from "@/config/api_config";
 // types
 import type { HoloTalent, HoloResponse } from "@/types";
 
-export const runtime = "edge";
 export const revalidate = 4320; // 12小時 = 12 * 60 * 60 秒
 
 function sortById(a: HoloTalent, b: HoloTalent) {
