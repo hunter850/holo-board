@@ -18,7 +18,7 @@ async function getData(id: string) {
                 next: { revalidate: 60 },
             }),
             fetch(`${API_URLS.VIDEO_LIST}?${params.toString()}`, {
-                next: { revalidate: 60 },
+                cache: "no-store",
             }),
         ]);
 
