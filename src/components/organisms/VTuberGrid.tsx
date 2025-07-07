@@ -27,7 +27,7 @@ export default async function VTuberGrid() {
 
     return (
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {talents.map((talent) => (
+            {talents.map((talent, index) => (
                 <VTuberCard
                     key={talent.id}
                     id={talent.id}
@@ -36,6 +36,7 @@ export default async function VTuberGrid() {
                     live_avatar={talent.liveAvatar}
                     youtube_link={talent.youtubeLink}
                     status={talent.status}
+                    priority={index < 15}
                 />
             ))}
         </div>

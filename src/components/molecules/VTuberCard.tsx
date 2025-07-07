@@ -9,9 +9,10 @@ interface VTuberCardProps {
     live_avatar: string;
     youtube_link: string;
     status: string;
+    priority: boolean;
 }
 
-export default function VTuberCard({ id, name, en_name, live_avatar, status }: VTuberCardProps) {
+export default function VTuberCard({ id, name, en_name, live_avatar, status, priority }: VTuberCardProps) {
     return (
         <Link href={`/talent/${id}`} className="h-full">
             <Card className="flex h-full flex-col overflow-hidden bg-white/70 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-200">
@@ -21,7 +22,8 @@ export default function VTuberCard({ id, name, en_name, live_avatar, status }: V
                         alt={name}
                         fill
                         className="object-cover object-top"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                        unoptimized
+                        priority={priority}
                     />
                     {/* Live 標籤暫時隱藏，等 API 完成後再啟用
           <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-sm">

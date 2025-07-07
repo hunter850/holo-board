@@ -24,6 +24,8 @@ export default function MainVideoSection({ video }: MainVideoSectionProps) {
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                             sizes="(max-width: 1024px) 100vw, 600px"
+                            unoptimized
+                            priority
                         />
                         <div className="absolute bottom-2 right-2">
                             <VideoStatus {...video} />

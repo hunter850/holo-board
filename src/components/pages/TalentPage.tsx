@@ -75,11 +75,11 @@ export default async function TalentPage({ params }: TalentPageProps) {
                     <div className="w-full lg:w-1/3">
                         <div className="relative aspect-square overflow-hidden rounded-lg">
                             <Image
-                                src={talent.live_avatar ?? talent.avatar ?? ""}
+                                src={talent.liveAvatar ?? talent.avatar ?? ""}
                                 alt={talent.name}
                                 fill
                                 className="object-cover object-top"
-                                sizes="(max-width: 1024px) 100vw, 33vw"
+                                unoptimized
                                 priority={true}
                             />
                         </div>
@@ -89,9 +89,9 @@ export default async function TalentPage({ params }: TalentPageProps) {
                             <h1 className="mb-2 text-center text-2xl font-bold text-purple-900 lg:text-left">
                                 {talent.name}
                             </h1>
-                            {talent.en_name && (
+                            {talent.enName && (
                                 <p className="mb-4 text-center text-lg text-purple-600/80 lg:text-left">
-                                    {talent.en_name}
+                                    {talent.enName}
                                 </p>
                             )}
                             {talent.status && (
@@ -100,8 +100,8 @@ export default async function TalentPage({ params }: TalentPageProps) {
                                 </p>
                             )}
                             <div className="flex justify-center gap-3 lg:justify-start">
-                                {talent.youtube_link && (
-                                    <Link href={talent.youtube_link} target="_blank">
+                                {talent.youtubeLink && (
+                                    <Link href={talent.youtubeLink} target="_blank">
                                         <Button className="bg-purple-600 hover:bg-purple-700">前往 YouTube 頻道</Button>
                                     </Link>
                                 )}
