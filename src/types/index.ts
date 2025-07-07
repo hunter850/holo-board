@@ -1,14 +1,14 @@
 export interface HoloTalent {
     id: number;
     name: string;
-    en_name: string;
-    live_avatar: string;
+    enName: string;
+    liveAvatar: string;
     avatar: string;
     status: string;
-    youtube_link: string;
+    youtubeLink: string;
     deleted: boolean;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface HoloResponse {
@@ -20,11 +20,11 @@ export interface HoloResponse {
 export interface TalentInfo {
     id: number;
     name: string;
-    en_name: string | null;
-    live_avatar: string | null;
+    enName: string | null;
+    liveAvatar: string | null;
     avatar: string | null;
     status: string | null;
-    youtube_link: string | null;
+    youtubeLink: string | null;
     deleted: boolean;
     created_at: string;
     updated_at: string;
