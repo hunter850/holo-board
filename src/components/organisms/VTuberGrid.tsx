@@ -11,8 +11,10 @@ async function getTalents() {
     const response = await fetch(API_URLS.TALENT_LIST, {
         next: { revalidate: 60 }, // 每分鐘重新驗證數據
     });
+    if (!response.ok) {
+        throw new Error("Failed to fetch talents");
+    }
     const data: HoloResponse = await response.json();
-
     if (!data.success) {
         throw new Error(data.message);
     }
@@ -30,9 +32,9 @@ export default async function VTuberGrid() {
                     key={talent.id}
                     id={talent.id}
                     name={talent.name}
-                    en_name={talent.en_name}
-                    live_avatar={talent.live_avatar}
-                    youtube_link={talent.youtube_link}
+                    en_name={talent.enName}
+                    live_avatar={talent.liveAvatar}
+                    youtube_link={talent.youtubeLink}
                     status={talent.status}
                 />
             ))}
