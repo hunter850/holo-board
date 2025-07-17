@@ -2,19 +2,19 @@ const SERVER_DOMAIN = process.env.SERVER_DOMAIN!;
 const SERVER_SUBPATH = process.env.SERVER_SUBPATH!;
 const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN!;
 
-const SERVER_URL = `${SERVER_DOMAIN}${SERVER_SUBPATH ?? ""}`;
+const SERVER_URL = `${SERVER_DOMAIN}/api${SERVER_SUBPATH ?? ""}`;
 
 export const API_CONFIG = {
     SERVER_DOMAIN: SERVER_DOMAIN,
     SERVER_URL: SERVER_URL,
     FRONTEND_DOMAIN: FRONTEND_DOMAIN,
     ENDPOINTS: {
-        TALENT_LIST: "/api/talent_list",
-        GOOGLE_LOGIN: "/api/google_login",
-        USER: "/api/user_info",
-        LOGOUT: "/api/logout",
-        TEST: "/api/test",
-        VIDEO_LIST: "/api/video_list",
+        TALENT_LIST: "/talent_list",
+        GOOGLE_LOGIN: "/google_login",
+        USER: "/user_info",
+        LOGOUT: "/logout",
+        TEST: "/test",
+        VIDEO_LIST: "/video_list",
     },
     FRONTEND_ENDPOINTS: {
         USER: "/api/user",
